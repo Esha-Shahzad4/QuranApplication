@@ -3,6 +3,7 @@ package com.example.quranapplication_n;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -21,8 +22,21 @@ public class MainActivity extends AppCompatActivity {
         pText = findViewById(R.id.parahText);
         aText = findViewById(R.id.ayatText);
         search = findViewById(R.id.buttonSearch);
-        display = findViewById(R.id.buttonSearch);
+        display = findViewById(R.id.displayWindow);
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int valP = Integer.parseInt(pText.getText().toString());
+                int valA = Integer.parseInt(aText.getText().toString());
+                QDH qdh=new QDH();
+                int ps=qdh.getParahStart(valP-1);
+                ps+=valA;
+                QuranArabicText txt=new QuranArabicText();
+                String ayat=txt.QuranArabicText[ps];
+                display.setText(ayat);
 
+            }
+        });
 
 
     }
